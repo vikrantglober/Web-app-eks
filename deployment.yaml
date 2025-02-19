@@ -1,25 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-   name: my-deployment
-   namespace: e-commerce
+  name: my-deployment
+  namespace: e-commerce
 spec:
-  replicas: 2 
+  replicas: 2
   selector:
-    matchLabels: 
+    matchLabels:
       apps: e-commerce-website
-
   template:
     metadata:
       labels:
         apps: e-commerce-website
-    
-    spec: 
+    spec:
       containers:
       - name: e-commerce-container
-        image: ojosamuel/e-commerce 
+        image: ojosamuel/e-commerce
         ports:
-          - containerPort: 80
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -27,9 +25,9 @@ metadata:
   name: my-web-svc
   namespace: e-commerce
 spec:
-  selector: 
+  selector:
     apps: e-commerce-website
-  ports: 
+  ports:
     - protocol: TCP
       port: 80
       targetPort: 80
